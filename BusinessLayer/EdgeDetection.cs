@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ImageFilterAndEdgeDetection_Project
 {
-    class EdgeDetection : IEdgeDetection
+    public class EdgeDetection : IEdgeDetection
     {
         /// <summary>
         /// fetches and returns the Matrix based on the filter parameter
@@ -126,29 +126,14 @@ namespace ImageFilterAndEdgeDetection_Project
                                           yFilterMatrix[filterY + filterOffset,
                                                   filterX + filterOffset];
                             }
-                        }
+                        } 
 
-                        //blueTotal = Math.Sqrt((blueX * blueX) + (blueY * blueY));
                         blueTotal = 0;
                         greenTotal = Math.Sqrt((greenX * greenX) + (greenY * greenY));
-                        //redTotal = Math.Sqrt((redX * redX) + (redY * redY));
                         redTotal = 0;
-
-                        if (blueTotal > 255)
-                        { blueTotal = 255; }
-                        else if (blueTotal < 0)
-                        { blueTotal = 0; }
 
                         if (greenTotal > 255)
                         { greenTotal = 255; }
-                        else if (greenTotal < 0)
-                        { greenTotal = 0; }
-
-
-                        if (redTotal > 255)
-                        { redTotal = 255; }
-                        else if (redTotal < 0)
-                        { redTotal = 0; }
 
                         resultbuff[byteOffset] = (byte)(blueTotal);
                         resultbuff[byteOffset + 1] = (byte)(greenTotal);

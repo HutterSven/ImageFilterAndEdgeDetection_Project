@@ -48,6 +48,10 @@ namespace ImageFilterAndEdgeDetection_Project
             stateChanged();
         }
 
+
+        /// <summary>
+        /// apply filters according to the checked filters
+        /// </summary>
         public void stateChanged()
         {
             if(rainbowBox.Checked || BaWBox.Checked || colorSwapBox.Checked)
@@ -119,6 +123,11 @@ namespace ImageFilterAndEdgeDetection_Project
             saveImage();
         }
 
+        /// <summary>
+        /// save given image to given path
+        /// </summary>
+        /// <param name="imageToSave"></param>
+        /// <param name="path"></param>
         private void saveImage()
         {
             if (pictureBox1.Image != null)
@@ -148,6 +157,11 @@ namespace ImageFilterAndEdgeDetection_Project
             loadImage();
         }
 
+        /// <summary>
+        /// load an image through the given path
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns>Bitmap</returns>
         private void loadImage()
         {
             String imagePath = null;

@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace ImageFilterAndEdgeDetection_Project
 {
-    class AccessData : IAccessData
+    public class AccessData : IAccessData
     {
         IDataAccessClass dataAccess = new DataAccessClass();
 

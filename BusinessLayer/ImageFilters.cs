@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ImageFilterAndEdgeDetection_Project
 {
-    class ImageFilters : IImageFilters
+    public class ImageFilters : IImageFilters
     {
         /// <summary>
         /// applies the rainbow filter on the given bitmap

@@ -2,7 +2,7 @@
 
 namespace ImageFilterAndEdgeDetection_Project
 {
-    interface IEdgeDetection
+    public interface IEdgeDetection
     {
         /// <summary>
         /// fetches and returns the Matrix based on the filter parameter

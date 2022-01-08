@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ImageFilterAndEdgeDetection_Project
 {
-    class Matrixes
+    public class Matrixes
     {
         /// <summary>
         /// Prewitt3x3Horizontal Matrix
