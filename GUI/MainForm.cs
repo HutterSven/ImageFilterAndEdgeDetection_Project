@@ -15,13 +15,16 @@ namespace ImageFilterAndEdgeDetection_Project
         bool noneChecked = true;
         private IEdgeDetection edgeDetection = new EdgeDetection();
         private IImageFilters imageFilters = new ImageFilters();
+        private IAccessData accessData = new AccessData();
         Image filteredImage;
         Image edgeDetectedImage;
+        Image originalImage;
 
         public MainForm()
         {
             InitializeComponent();
             tabControl1.Selected += new TabControlEventHandler(TabControl1_SelectedIndexChanged);
+            originalImage = Resources.OriginalImage;
         }
 
 
@@ -58,11 +61,11 @@ namespace ImageFilterAndEdgeDetection_Project
 
             if (noneChecked)
             {
-                pictureBox1.Image = new Bitmap(Resources.OriginalImage);
+                pictureBox1.Image = new Bitmap(originalImage);
             }
             else
             {
-                Bitmap newBitmap = new Bitmap(Resources.OriginalImage);
+                Bitmap newBitmap = new Bitmap(originalImage);
                 if (rainbowBox.Checked)
                 {
                     newBitmap = imageFilters.RainbowFilter(newBitmap);
@@ -104,6 +107,68 @@ namespace ImageFilterAndEdgeDetection_Project
                 filteredImage = pictureBox1.Image;
             }
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            saveImage();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            saveImage();
+        }
+
+        private void saveImage()
+        {
+            if (pictureBox1.Image != null)
+            {
+                String path = null;
+                SaveFileDialog sfd = new SaveFileDialog
+                {
+                    Title = "Specify a file name and file path.",
+                    Filter = "Png Images(.png)|.png"
+                };
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    path = sfd.FileName;
+                }
+                Bitmap imageToSave = new Bitmap(pictureBox1.Image);
+                accessData.SaveImage(imageToSave, path);
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            loadImage();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            loadImage();
+        }
+
+        private void loadImage()
+        {
+            String imagePath = null;
+            OpenFileDialog ofd = new OpenFileDialog
+            {
+                Title = "Select an image file.",
+                Filter = "PNG files|.png"
+            };
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                imagePath = ofd.FileName;
+            }
+            Bitmap loadedImage = accessData.LoadImage(imagePath);
+            if(loadedImage != null)
+            {
+                pictureBox1.Image = loadedImage;
+            }
+            originalImage = pictureBox1.Image;
+            BaWBox.Checked = false;
+            rainbowBox.Checked = false;
+            colorSwapBox.Checked = false;
         }
     }
 }

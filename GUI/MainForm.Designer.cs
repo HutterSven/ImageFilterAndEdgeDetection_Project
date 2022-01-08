@@ -113,6 +113,7 @@ namespace ImageFilterAndEdgeDetection_Project
             this.button3.TabIndex = 9;
             this.button3.Text = "load image";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
@@ -122,6 +123,7 @@ namespace ImageFilterAndEdgeDetection_Project
             this.button4.TabIndex = 8;
             this.button4.Text = "save image";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // label2
             // 
@@ -156,6 +158,7 @@ namespace ImageFilterAndEdgeDetection_Project
             this.button2.TabIndex = 5;
             this.button2.Text = "load image";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label1
             // 
@@ -185,6 +188,7 @@ namespace ImageFilterAndEdgeDetection_Project
             this.button1.TabIndex = 4;
             this.button1.Text = "save image";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // BaWBox
             // 
