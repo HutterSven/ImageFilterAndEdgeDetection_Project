@@ -1,17 +1,8 @@
 ﻿using ImageFilterAndEdgeDetection_Project;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
 using NSubstitute;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
-using System.IO.Abstractions;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ImageFilterAndEdgeDetection_ProjectTest
 {
@@ -24,6 +15,9 @@ namespace ImageFilterAndEdgeDetection_ProjectTest
         private AccessData accessData = new AccessData();
         private IAccessData iAccessData = Substitute.For<IAccessData>();
 
+        /// <summary>
+        /// load image test for correct execution
+        /// </summary>
         [TestMethod]
         public void _OpenFile_Should_Return_Bitmap()
         {
@@ -38,6 +32,9 @@ namespace ImageFilterAndEdgeDetection_ProjectTest
             Compare.CompareBitmap(accessData.LoadImage(path), resultImage);
         }
 
+        /// <summary>
+        /// load image test for no path param
+        /// </summary>
         [TestMethod]
         public void _OpenFile_Should_Return_Null()
         {
@@ -52,6 +49,9 @@ namespace ImageFilterAndEdgeDetection_ProjectTest
             Assert.AreEqual(accessData.LoadImage(path), resultImage);
         }
 
+        /// <summary>
+        /// save image test for correct execution
+        /// </summary>
         [TestMethod]
         public void _SaveFile_Should_Save_Image()
         {
@@ -66,6 +66,9 @@ namespace ImageFilterAndEdgeDetection_ProjectTest
             Compare.CompareBitmap(bitmap, resultImage);
         }
 
+        /// <summary>
+        /// save image test for no path param
+        /// </summary>
         [TestMethod]
         public void _SaveFile_Should_Return_ArgumentExeption_On_Path_Null()
         {
@@ -77,6 +80,9 @@ namespace ImageFilterAndEdgeDetection_ProjectTest
             Assert.ThrowsException<ArgumentException>(() => accessData.SaveImage(bitmap, path));
         }
 
+        /// <summary>
+        /// save image test for empty string path
+        /// </summary>
         [TestMethod]
         public void _SaveFile_Should_Return_ArgumentExeption_On_Path_Empty_String()
         {
@@ -87,6 +93,10 @@ namespace ImageFilterAndEdgeDetection_ProjectTest
             //Assert
             Assert.ThrowsException<ArgumentException>(() => accessData.SaveImage(bitmap, path));
         }
+
+        /// <summary>
+        /// save image test for no bitmap param
+        /// </summary>
         [TestMethod]
         public void _SaveFile_Should_Return_ArgumentExeption_On_Bitmap()
         {

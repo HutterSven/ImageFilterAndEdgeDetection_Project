@@ -1,15 +1,18 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ImageFilterAndEdgeDetection_ProjectTest
 {
+    /// <summary>
+    /// class containing comparators
+    /// </summary>
     class Compare
     {
+        /// <summary>
+        /// comparing two given bitmaps pixel by pixel
+        /// </summary>
+        /// <param name="bitmap1"></param>
+        /// <param name="bitmap2"></param>
         public static void CompareBitmap(Bitmap bitmap1, Bitmap bitmap2)
         {
             if(bitmap1.Size == bitmap2.Size)

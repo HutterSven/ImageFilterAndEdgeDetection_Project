@@ -5,6 +5,9 @@ using NSubstitute;
 
 namespace ImageFilterAndEdgeDetection_ProjectTest
 {
+    /// <summary>
+    /// test class to test all the functions of the class EdgeDetection
+    /// </summary>
     [TestClass]
     public class EdgeDetectionTest
     {
@@ -12,6 +15,9 @@ namespace ImageFilterAndEdgeDetection_ProjectTest
         private EdgeDetection edgeDetection = new EdgeDetection();
         private IEdgeDetection iEdgeDetection = Substitute.For<IEdgeDetection>();
 
+        /// <summary>
+        /// edge detection test for the prewitt filters
+        /// </summary>
         [TestMethod]
         public void prewittMatrixTest()
         {
@@ -21,6 +27,9 @@ namespace ImageFilterAndEdgeDetection_ProjectTest
             Compare.CompareBitmap(iEdgeDetection.filter(original, "Prewitt3x3Horizontal", "Prewitt3x3Vertical"), imageResult);
         }
 
+        /// <summary>
+        /// edge detection test for the kirsch filters
+        /// </summary>
         [TestMethod]
         public void kirschMatrixTest()
         {
@@ -30,6 +39,9 @@ namespace ImageFilterAndEdgeDetection_ProjectTest
             Compare.CompareBitmap(iEdgeDetection.filter(original, "Kirsch3x3Horizontal", "Kirsch3x3Vertical"), imageResult);
         }
 
+        /// <summary>
+        /// edge detection test for the sobel filters
+        /// </summary>
         [TestMethod]
         public void sobelMatrixTest()
         {
@@ -39,6 +51,9 @@ namespace ImageFilterAndEdgeDetection_ProjectTest
             Compare.CompareBitmap(iEdgeDetection.filter(original, "Sobel3x3Horizontal", "Sobel3x3Vertical"), imageResult);
         }
 
+        /// <summary>
+        /// edge detection test for the default filters
+        /// </summary>
         [TestMethod]
         public void defaultMatrixTest()
         {
@@ -48,6 +63,9 @@ namespace ImageFilterAndEdgeDetection_ProjectTest
             Compare.CompareBitmap(iEdgeDetection.filter(original, "", ""), imageResult);
         }
 
+        /// <summary>
+        /// edge detection test for null filters
+        /// </summary>
         [TestMethod]
         public void nullMatrixTest()
         {

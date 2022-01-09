@@ -5,6 +5,9 @@ using NSubstitute;
 
 namespace ImageFilterAndEdgeDetection_ProjectTest
 {
+    /// <summary>
+    /// test class to test all the functions of the class ImageFilters
+    /// </summary>
     [TestClass]
     public class ImageFilterTest
     {
@@ -12,6 +15,9 @@ namespace ImageFilterAndEdgeDetection_ProjectTest
         private ImageFilters imageFilters = new ImageFilters();
         private IImageFilters iImageFilters = Substitute.For<IImageFilters>();
 
+        /// <summary>
+        /// image filter test for the rainbow filter
+        /// </summary>
         [TestMethod]
         public void rainbowFilterTest()
         {
@@ -21,6 +27,9 @@ namespace ImageFilterAndEdgeDetection_ProjectTest
             Compare.CompareBitmap(iImageFilters.RainbowFilter(original), imageResult);
         }
 
+        /// <summary>
+        /// image filter test for the black and white filter
+        /// </summary>
         [TestMethod]
         public void blackAndWhiteFilterTest()
         {
@@ -30,6 +39,9 @@ namespace ImageFilterAndEdgeDetection_ProjectTest
             Compare.CompareBitmap(iImageFilters.BlackWhite(original), imageResult);
         }
 
+        /// <summary>
+        /// image filter test for the color swap filter
+        /// </summary>
         [TestMethod]
         public void colorSwapFilterTest()
         {
