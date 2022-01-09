@@ -10,16 +10,25 @@ using System.Windows.Forms;
 
 namespace ImageFilterAndEdgeDetection_Project
 {
-    class DataAccessClass : IDataAccessClass
+    public class DataAccessClass : IDataAccessClass
     {
+
         /// <summary>
         /// save given image to given path
         /// </summary>
         /// <param name="imageToSave"></param>
         /// <param name="path"></param>
-        public void SaveImage(Bitmap imageToSave, String path)
+        public void SaveImage(Bitmap imageToSave, string path)
         {
-            if (imageToSave != null && path != null)
+            if(imageToSave == null)
+            {
+                throw new ArgumentException("Image cannot be null", nameof(imageToSave));
+            }
+            else if (path == null)
+            {
+                throw new ArgumentException("Path cannot be null", nameof(path));
+            }
+            else
             {
                 string fileExtension = Path.GetExtension(path).ToUpper();
                 ImageFormat imgFormat = ImageFormat.Png;
@@ -35,7 +44,7 @@ namespace ImageFilterAndEdgeDetection_Project
         /// </summary>
         /// <param name="path"></param>
         /// <returns>Bitmap</returns>
-        public Bitmap LoadImage(String path)
+        public Bitmap LoadImage(string path)
         {
             Bitmap loadedImage;
             try

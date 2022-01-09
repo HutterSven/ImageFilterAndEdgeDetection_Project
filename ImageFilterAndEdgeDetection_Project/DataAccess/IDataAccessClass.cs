@@ -2,7 +2,7 @@
 
 namespace ImageFilterAndEdgeDetection_Project
 {
-    interface IDataAccessClass
+    public interface IDataAccessClass
     {
         /// <summary>
         /// save given image to given path
