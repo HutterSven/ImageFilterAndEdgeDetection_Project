@@ -45,6 +45,7 @@ namespace ImageFilterAndEdgeDetection_Project
             this.BaWBox = new System.Windows.Forms.CheckBox();
             this.rainbowBox = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.lblError = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -55,7 +56,7 @@ namespace ImageFilterAndEdgeDetection_Project
             // 
             this.pictureBox1.Location = new System.Drawing.Point(12, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(458, 419);
+            this.pictureBox1.Size = new System.Drawing.Size(458, 402);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -222,11 +223,21 @@ namespace ImageFilterAndEdgeDetection_Project
             this.tabControl1.Size = new System.Drawing.Size(458, 130);
             this.tabControl1.TabIndex = 1;
             // 
+            // lblError
+            // 
+            this.lblError.AutoSize = true;
+            this.lblError.ForeColor = System.Drawing.Color.Red;
+            this.lblError.Location = new System.Drawing.Point(16, 419);
+            this.lblError.Name = "lblError";
+            this.lblError.Size = new System.Drawing.Size(0, 15);
+            this.lblError.TabIndex = 2;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(482, 579);
+            this.Controls.Add(this.lblError);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.pictureBox1);
             this.Name = "MainForm";
@@ -239,6 +250,7 @@ namespace ImageFilterAndEdgeDetection_Project
             this.tabPage1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -260,6 +272,7 @@ namespace ImageFilterAndEdgeDetection_Project
         private System.Windows.Forms.Button sobelBtn;
         private System.Windows.Forms.Button kirschBtn;
         private System.Windows.Forms.Button prewittBtn;
+        private System.Windows.Forms.Label lblError;
     }
 }
 

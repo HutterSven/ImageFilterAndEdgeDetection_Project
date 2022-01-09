@@ -48,7 +48,8 @@ namespace ImageFilterAndEdgeDetection_Project
         /// </summary>
         public void stateChanged()
         {
-            if(rainbowBox.Checked || BaWBox.Checked || colorSwapBox.Checked)
+            lblError.Text = "";
+            if (rainbowBox.Checked || BaWBox.Checked || colorSwapBox.Checked)
             {
                 noneChecked = false;
             }
@@ -82,38 +83,43 @@ namespace ImageFilterAndEdgeDetection_Project
 
         private void prewittBtn_Click(object sender, EventArgs e)
         {
+            lblError.Text = "";
             edgeDetectedImage = edgeDetection.filter(new Bitmap(filteredImage), "Prewitt3x3Horizontal", "Prewitt3x3Vertical");
             pictureBox1.Image = edgeDetectedImage;
         }
 
         private void kirschBtn_Click(object sender, EventArgs e)
         {
+            lblError.Text = "";
             edgeDetectedImage = edgeDetection.filter(new Bitmap(filteredImage), "Kirsch3x3Horizontal", "Kirsch3x3Vertical");
             pictureBox1.Image = edgeDetectedImage;
         }
 
         private void sobelBtn_Click(object sender, EventArgs e)
         {
+            lblError.Text = "";
             edgeDetectedImage = edgeDetection.filter(new Bitmap(filteredImage), "Sobel3x3Horizontal", "Sobel3x3Vertical");
             pictureBox1.Image = edgeDetectedImage;
         }
 
         private void TabControl1_SelectedIndexChanged(object sender, TabControlEventArgs e)
         {
+            lblError.Text = "";
             if (e.TabPage == tabPage2)
             {
                 filteredImage = pictureBox1.Image;
             }
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            lblError.Text = "";
             saveImage();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
+            lblError.Text = "";
             saveImage();
         }
 
@@ -137,17 +143,26 @@ namespace ImageFilterAndEdgeDetection_Project
                     path = sfd.FileName;
                 }
                 Bitmap imageToSave = new Bitmap(pictureBox1.Image);
-                accessData.SaveImage(imageToSave, path);
+                try
+                {
+                    accessData.SaveImage(imageToSave, path);
+                }
+                catch (Exception)
+                {
+                    lblError.Text = "unable to save image";
+                }
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            lblError.Text = "";
             loadImage();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
+            lblError.Text = "";
             loadImage();
         }
 
@@ -159,20 +174,29 @@ namespace ImageFilterAndEdgeDetection_Project
         private void loadImage()
         {
             String imagePath = null;
+            Bitmap loadedImage = null;
+
             OpenFileDialog ofd = new OpenFileDialog
             {
                 Title = "Select an image file.",
                 Filter = "PNG files|.png"
             };
+            
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 imagePath = ofd.FileName;
             }
-            Bitmap loadedImage = accessData.LoadImage(imagePath);
-            if(loadedImage != null)
+            loadedImage = accessData.LoadImage(imagePath);
+
+            if (loadedImage != null)
             {
                 pictureBox1.Image = loadedImage;
             }
+            else
+            {
+                lblError.Text = "unable to find image";
+            }
+
             originalImage = pictureBox1.Image;
             BaWBox.Checked = false;
             rainbowBox.Checked = false;
