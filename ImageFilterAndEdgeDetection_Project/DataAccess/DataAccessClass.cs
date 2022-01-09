@@ -24,9 +24,9 @@ namespace ImageFilterAndEdgeDetection_Project
             {
                 throw new ArgumentException("Image cannot be null", nameof(imageToSave));
             }
-            else if (path == null)
+            else if (path == null || path == "")
             {
-                throw new ArgumentException("Path cannot be null", nameof(path));
+                throw new ArgumentException("Path cannot be null or empty string", nameof(path));
             }
             else
             {
