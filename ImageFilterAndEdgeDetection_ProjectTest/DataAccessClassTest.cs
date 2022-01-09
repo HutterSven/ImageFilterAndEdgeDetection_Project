@@ -21,21 +21,21 @@ namespace ImageFilterAndEdgeDetection_ProjectTest
     [TestClass]
     public class DataAccessClassTest
     {
-        private DataAccessClass DataAccessClass = new DataAccessClass();
-        private IDataAccessClass IDataAccessClass = Substitute.For<IDataAccessClass>();
+        private AccessData accessData = new AccessData();
+        private IAccessData iAccessData = Substitute.For<IAccessData>();
 
         [TestMethod]
         public void _OpenFile_Should_Return_Bitmap()
         {
             //Arrange
             Bitmap bitmap = Resource1.originalPenguins;
-            string path = @"..\..\Resources\penguins.png";
+            string path = @"..\..\..\Resources\originalPenguins.png";
             //Act
-            IDataAccessClass.LoadImage(path).Returns(bitmap);
+            iAccessData.LoadImage(path).Returns(bitmap);
 
-            Bitmap resultImage = IDataAccessClass.LoadImage(path);
+            Bitmap resultImage = iAccessData.LoadImage(path);
             //Assert
-            Compare.CompareBitmap(bitmap, resultImage);
+            Compare.CompareBitmap(accessData.LoadImage(path), resultImage);
         }
 
         [TestMethod]
@@ -45,11 +45,11 @@ namespace ImageFilterAndEdgeDetection_ProjectTest
             Bitmap bitmap = null;
             string path = "";
             //Act
-            IDataAccessClass.LoadImage(path).Returns(bitmap);
+            iAccessData.LoadImage(path).Returns(bitmap);
 
-            Bitmap resultImage = IDataAccessClass.LoadImage(path);
+            Bitmap resultImage = iAccessData.LoadImage(path);
             //Assert
-            Assert.AreEqual(bitmap, resultImage);
+            Assert.AreEqual(accessData.LoadImage(path), resultImage);
         }
 
         [TestMethod]
@@ -58,9 +58,8 @@ namespace ImageFilterAndEdgeDetection_ProjectTest
             //Arrange
             Bitmap bitmap = Resource1.originalPenguins;
             string path = @"..\..\..\Resources\saveImageTestSubstitute.png";
-            DataAccessClass dac = new DataAccessClass();
             //Act
-            dac.SaveImage(bitmap, path);
+            accessData.SaveImage(bitmap, path);
 
             Bitmap resultImage = new Bitmap(path);
 
@@ -73,10 +72,9 @@ namespace ImageFilterAndEdgeDetection_ProjectTest
             //Arrange
             Bitmap bitmap = Resource1.originalPenguins;
             string path = null;
-            DataAccessClass dac = new DataAccessClass();
             //Act
             //Assert
-            Assert.ThrowsException<ArgumentException>(() => dac.SaveImage(bitmap, path));
+            Assert.ThrowsException<ArgumentException>(() => accessData.SaveImage(bitmap, path));
         }
 
         [TestMethod]
@@ -85,10 +83,9 @@ namespace ImageFilterAndEdgeDetection_ProjectTest
             //Arrange
             Bitmap bitmap = Resource1.originalPenguins;
             string path = @"";
-            DataAccessClass dac = new DataAccessClass();
             //Act
             //Assert
-            Assert.ThrowsException<ArgumentException>(() => dac.SaveImage(bitmap, path));
+            Assert.ThrowsException<ArgumentException>(() => accessData.SaveImage(bitmap, path));
         }
         [TestMethod]
         public void _SaveFile_Should_Return_ArgumentExeption_On_Bitmap()
@@ -96,10 +93,9 @@ namespace ImageFilterAndEdgeDetection_ProjectTest
             //Arrange
             Bitmap bitmap = null;
             string path = @"..\..\..\Resources\saveImageTestSubstitute.png";
-            DataAccessClass dac = new DataAccessClass();
             //Act
             //Assert
-            Assert.ThrowsException<ArgumentException>(() => dac.SaveImage(bitmap, path));
+            Assert.ThrowsException<ArgumentException>(() => accessData.SaveImage(bitmap, path));
         }
 
 
