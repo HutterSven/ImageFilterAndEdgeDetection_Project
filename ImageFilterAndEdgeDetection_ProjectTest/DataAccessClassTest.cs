@@ -68,7 +68,19 @@ namespace ImageFilterAndEdgeDetection_ProjectTest
         }
 
         [TestMethod]
-        public void _SaveFile_Should_Return_ArgumentExeption_On_Path()
+        public void _SaveFile_Should_Return_ArgumentExeption_On_Path_Null()
+        {
+            //Arrange
+            Bitmap bitmap = Resource1.originalPenguins;
+            string path = null;
+            DataAccessClass dac = new DataAccessClass();
+            //Act
+            //Assert
+            Assert.ThrowsException<ArgumentException>(() => dac.SaveImage(bitmap, path));
+        }
+
+        [TestMethod]
+        public void _SaveFile_Should_Return_ArgumentExeption_On_Path_Empty_String()
         {
             //Arrange
             Bitmap bitmap = Resource1.originalPenguins;
