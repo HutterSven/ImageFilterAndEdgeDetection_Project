@@ -56,18 +56,9 @@ namespace ImageFilterAndEdgeDetection_Project
                 Marshal.Copy(newbitmapData.Scan0, pixelbuff, 0, pixelbuff.Length);
                 oldBmp.UnlockBits(newbitmapData);
 
-                double blueX = 0.0;
                 double greenX = 0.0;
-                double redX = 0.0;
-
-                double blueY = 0.0;
                 double greenY = 0.0;
-                double redY = 0.0;
-
-                double blueTotal = 0.0;
                 double greenTotal = 0.0;
-                double redTotal = 0.0;
-
                 int filterOffset = 1;
                 int calcOffset = 0;
 
@@ -79,10 +70,9 @@ namespace ImageFilterAndEdgeDetection_Project
                     for (int offsetX = filterOffset; offsetX <
                         oldBmp.Width - filterOffset; offsetX++)
                     {
-                        blueX = greenX = redX = 0;
-                        blueY = greenY = redY = 0;
-
-                        blueTotal = greenTotal = redTotal = 0.0;
+                        greenX = 0;
+                        greenY = 0;
+                        greenTotal = 0.0;
 
                         byteOffset = offsetY *
                                      newbitmapData.Stride +
@@ -98,42 +88,25 @@ namespace ImageFilterAndEdgeDetection_Project
                                              (filterX * 4) +
                                              (filterY * newbitmapData.Stride);
 
-                                blueX += (double)(pixelbuff[calcOffset]) *
-                                          xFilterMatrix[filterY + filterOffset,
-                                                  filterX + filterOffset];
-
                                 greenX += (double)(pixelbuff[calcOffset + 1]) *
                                           xFilterMatrix[filterY + filterOffset,
-                                                  filterX + filterOffset];
-
-                                redX += (double)(pixelbuff[calcOffset + 2]) *
-                                          xFilterMatrix[filterY + filterOffset,
-                                                  filterX + filterOffset];
-
-                                blueY += (double)(pixelbuff[calcOffset]) *
-                                          yFilterMatrix[filterY + filterOffset,
                                                   filterX + filterOffset];
 
                                 greenY += (double)(pixelbuff[calcOffset + 1]) *
                                           yFilterMatrix[filterY + filterOffset,
                                                   filterX + filterOffset];
-
-                                redY += (double)(pixelbuff[calcOffset + 2]) *
-                                          yFilterMatrix[filterY + filterOffset,
-                                                  filterX + filterOffset];
                             }
-                        } 
+                        }
 
-                        blueTotal = 0;
+
                         greenTotal = Math.Sqrt((greenX * greenX) + (greenY * greenY));
-                        redTotal = 0;
+
 
                         if (greenTotal > 255)
                         { greenTotal = 255; }
 
-                        resultbuff[byteOffset] = (byte)(blueTotal);
                         resultbuff[byteOffset + 1] = (byte)(greenTotal);
-                        resultbuff[byteOffset + 2] = (byte)(redTotal);
+
                         resultbuff[byteOffset + 3] = 255;
                     }
                 }
